@@ -10,13 +10,10 @@ function action() {
 
   if (actionInput === '1') {
     addTodo();
-    console.log('Todo adicionado com sucesso');
   } else if (actionInput === '2') {
     editTodo();
-    console.log('Todo editado com sucesso');
   } else if (actionInput === '3') {
     removeTodo();
-    console.log('Todo removido com sucesso');
   } else if (actionInput === '4') {
     listTodo();
   } else if (actionInput === '5') {
@@ -53,6 +50,8 @@ function addTodo() {
   add.todo = prompt('Informe o seu todo: ');
   add.hour = prompt('Informe o horário do todo: ');
 
+  console.log('Todo adicionado com sucesso');
+
   return todoList.push(add);
 }
 
@@ -74,25 +73,35 @@ function editTodo() {
     todoList[index].todo = editT;
     todoList[index].hour = editH;
 
+    console.log('Todo editado com sucesso');
+
     return todoList;
   }
 }
 
 function removeTodo() {
-  console.log('Informe o ID do todo:');
-  console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-  const todoID = parseInt(prompt());
+  if (todoList.length === 0) {
+    console.log('Não há items na lista.');
 
-  const index = todoID - 1;
-
-  if (isNaN(todoID) || todoList.length < index) {
-    console.log('ID inválido.');
-
-    removeTodo();
+    return
   } else {
-    todoList.splice(index, 1);
-    
-    return todoList;
+    console.log('Informe o ID do todo:');
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
+    const todoID = parseInt(prompt());
+
+    const index = todoID - 1;
+
+    if (isNaN(todoID) || todoList.length < index) {
+      console.log('ID inválido.');
+
+      removeTodo();
+    } else {
+      todoList.splice(index, 1);
+      
+      console.log('Todo removido com sucesso'); 
+
+      return todoList;
+    }
   }
 }
 
@@ -103,20 +112,26 @@ function listTodo() {
 }
 
 function getTodo() {
-  console.log('Informe o ID do todo:');
-  console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-  const todoID = parseInt(prompt());
+  if (todoList.length === 0) {
+    console.log('Não há items na lista.');
 
-  const index = todoID - 1;
-
-  if (isNaN(todoID) || todoList.length < index) {
-    console.log('ID inválido.');
-
-    getTodo();
-  } else {
-    console.log(todoList[index]);
-    
     return
+  } else {
+    console.log('Informe o ID do todo:');
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
+    const todoID = parseInt(prompt());
+
+    const index = todoID - 1;
+
+    if (isNaN(todoID) || todoList.length < index) {
+      console.log('ID inválido.');
+
+      getTodo();
+    } else {
+      console.log(todoList[index]);
+      
+      return
+    }
   }
 }
 
