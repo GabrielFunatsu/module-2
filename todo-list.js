@@ -1,20 +1,7 @@
-console.log('Seja Bem Vindo!');
-
-const prompt = require('prompt-sync')();
-
-const todoList = [];
-
 function action() {
-  let actionInput
 
-  try {
-    actionInput = message();
-  } catch (e) {
-    console.log(e.message);
-    console.log('Tente Novamente.')
-    action();
-  }
-
+  const actionInput = message();
+  
     switch (actionInput) {
       case 1:
         addTodo();
@@ -76,13 +63,13 @@ function message() {
 
   console.log('Selecione uma das opções acima (digite o número):');
 
-  const messageInput = parseFloat(prompt());
+  const messageInput = Number(prompt());
 
   return messageInput;
 }
 
 function addTodo() {
-  let add = {};
+  const add = {};
 
   add.todo = prompt('Informe o seu todo: ');
   add.hour = prompt('Informe o horário do todo: ');
@@ -97,13 +84,13 @@ function editTodo() {
     throw Error ('Não há itens na lista.');
   } else {
     console.log('Informe o ID do todo:');
-    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-    const todoID = parseFloat(prompt());
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)');
+    const todoID = Number(prompt());
   
     const index = todoID - 1;
   
     try {
-      if (todoID !== parseInt(todoID) || todoList.length <= index) {
+      if (!todoID || todoID !== parseInt(todoID) || todoList.length <= index) {
         throw Error ('ID inválido.');
       } else {
         const editTodo = prompt('Edite o seu todo: ');
@@ -128,13 +115,13 @@ function removeTodo() {
     throw Error ('Não há items na lista.');
   } else {
     console.log('Informe o ID do todo:');
-    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-    const todoID = parseFloat(prompt());
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)');
+    const todoID = Number(prompt());
 
     const index = todoID - 1;
 
     try {
-      if (todoID !== parseInt(todoID) || todoList.length <= index) {
+      if (!todoID || todoID !== parseInt(todoID) || todoList.length <= index) {
         throw Error ('ID inválido.');
       } else {
         todoList.splice(index, 1);
@@ -152,7 +139,7 @@ function removeTodo() {
 
 function listTodo() {
   if (todoList.length === 0) {
-    console.log('Não há itens na lista.')
+    console.log('Não há itens na lista.');
   } else {
     console.log(todoList);
   }
@@ -164,13 +151,15 @@ function getTodo() {
     throw Error ('Não há items na lista.');
   } else {
     console.log('Informe o ID do todo:');
-    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-    const todoID = parseFloat(prompt());
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)');
+    const todoID = Number(prompt());
+
+    console.log(todoID);
   
     const index = todoID - 1;
 
     try {
-      if (todoID !== parseInt(todoID) || todoList.length <= index) {
+      if (!todoID || todoID !== parseInt(todoID) || todoList.length <= index) {
         throw Error ('ID inválido.');
       } else {
         console.log(todoList[index]);
@@ -187,12 +176,12 @@ function getTodo() {
 function redo() {
   console.log('Deseja realizar mais alguma ação?');
   console.log('Digite (s) para sim e (n) para não.');
-  const actionInput = prompt('').toLowerCase();
+  const redoInput = prompt('').toLowerCase();
 
   try {
-    if (actionInput === 's') {
+    if (redoInput === 's') {
       action();
-    } else if (actionInput === 'n') {
+    } else if (redoInput === 'n') {
       return
     } else {
       throw Error ('Opção inválida.');
@@ -202,6 +191,17 @@ function redo() {
     redo();
   }
 }
+
+console.log('Seja Bem Vindo!');
+
+const prompt = require('prompt-sync')();
+
+const todoList = [
+  {
+    todo: 'youtube',
+    hour: '21:00'
+  }
+];
 
 action();
 
