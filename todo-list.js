@@ -2,20 +2,7 @@ console.log('Seja Bem Vindo!');
 
 const prompt = require('prompt-sync')();
 
-const todoList = [
-  {
-    todo: 'youtube',
-    hour: '21:00'
-  }, 
-  {
-    todo: 'shower',
-    hour: '21:30'
-  }, 
-  {
-    todo: 'dinner',
-    hour: '22:00'
-  }
-];
+const todoList = [];
 
 function action() {
   let actionInput
