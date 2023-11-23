@@ -2,7 +2,20 @@ console.log('Seja Bem Vindo!');
 
 const prompt = require('prompt-sync')();
 
-const todoList = [];
+const todoList = [
+  {
+    todo: 'youtube',
+    hour: '21:00'
+  }, 
+  {
+    todo: 'shower',
+    hour: '21:30'
+  }, 
+  {
+    todo: 'dinner',
+    hour: '22:00'
+  }
+];
 
 function action() {
   let actionInput
@@ -27,6 +40,7 @@ function action() {
           redo();         
         } catch (e) {
           console.log(e.message);
+          redo();    
         }
         break;
 
@@ -36,6 +50,7 @@ function action() {
           redo();        
         } catch (e) {
           console.log(e.message);
+          redo();    
         }
         break;
 
@@ -50,6 +65,7 @@ function action() {
           redo();        
         } catch (e) {
           console.log(e.message);
+          redo();    
         }
         break;
     
@@ -96,12 +112,12 @@ function editTodo() {
 
   console.log('Informe o ID do todo:');
   console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-  const todoID = parseInt(prompt());
+  const todoID = parseFloat(prompt());
 
   const index = todoID - 1;
 
   try {
-    if (isNaN(todoID) || todoList.length <= index) {
+    if (todoID !== parseInt(todoID) || todoList.length <= index) {
       throw Error ('ID inválido.');
     } else {
       const editTodo = prompt('Edite o seu todo: ');
@@ -127,12 +143,12 @@ function removeTodo() {
   
   console.log('Informe o ID do todo:');
   console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-  const todoID = parseInt(prompt());
+  const todoID = parseFloat(prompt());
 
   const index = todoID - 1;
 
   try {
-    if (isNaN(todoID) || todoList.length <= index) {
+    if (todoID !== parseInt(todoID) || todoList.length <= index) {
       throw Error ('ID inválido.');
     } else {
       todoList.splice(index, 1);
@@ -166,12 +182,12 @@ function getTodo() {
   
     console.log('Informe o ID do todo:');
     console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-    const todoID = parseInt(prompt());
+    const todoID = parseFloat(prompt());
   
     const index = todoID - 1;
 
     try {
-      if (isNaN(todoID) || todoList.length <= index) {
+      if (todoID !== parseInt(todoID) || todoList.length <= index) {
         throw Error ('ID inválido.');
       } else {
         console.log(todoList[index]);
