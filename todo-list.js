@@ -18,11 +18,13 @@ function action() {
     switch (actionInput) {
       case 1:
         addTodo();
+        redo();
         break;
 
       case 2:
         try {
-          editTodo();          
+          editTodo(); 
+          redo();         
         } catch (e) {
           console.log(e.message);
         }
@@ -30,7 +32,8 @@ function action() {
 
       case 3:
         try {
-          removeTodo();          
+          removeTodo();  
+          redo();        
         } catch (e) {
           console.log(e.message);
         }
@@ -38,11 +41,13 @@ function action() {
 
       case 4:
         listTodo();
+        redo();
         break;
 
       case 5:
         try {
-          getTodo();          
+          getTodo();  
+          redo();        
         } catch (e) {
           console.log(e.message);
         }
@@ -53,8 +58,6 @@ function action() {
         action();
         break;
     }
-  
-  redo();
 
   return
 }
