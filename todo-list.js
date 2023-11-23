@@ -95,31 +95,31 @@ function addTodo() {
 function editTodo() {
   if (todoList.length === 0) {
     throw Error ('Não há itens na lista.');
-  }
-
-  console.log('Informe o ID do todo:');
-  console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-  const todoID = parseFloat(prompt());
-
-  const index = todoID - 1;
-
-  try {
-    if (todoID !== parseInt(todoID) || todoList.length <= index) {
-      throw Error ('ID inválido.');
-    } else {
-      const editTodo = prompt('Edite o seu todo: ');
-      const editHour = prompt('Edite o horário do todo: ');
+  } else {
+    console.log('Informe o ID do todo:');
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
+    const todoID = parseFloat(prompt());
   
-      todoList[index].todo = editTodo;
-      todoList[index].hour = editHour;
+    const index = todoID - 1;
   
-      console.log('Todo editado com sucesso');
-  
-      return
+    try {
+      if (todoID !== parseInt(todoID) || todoList.length <= index) {
+        throw Error ('ID inválido.');
+      } else {
+        const editTodo = prompt('Edite o seu todo: ');
+        const editHour = prompt('Edite o horário do todo: ');
+    
+        todoList[index].todo = editTodo;
+        todoList[index].hour = editHour;
+    
+        console.log('Todo editado com sucesso');
+    
+        return
+      }
+    } catch (e) {
+      console.log(e.message);
+      editTodo();
     }
-  } catch (e) {
-    console.log(e.message);
-    editTodo();
   }
 }
 
@@ -127,29 +127,26 @@ function removeTodo() {
   if (todoList.length === 0) {
     throw Error ('Não há items na lista.');
   } else {
-  
-  console.log('Informe o ID do todo:');
-  console.log('(Exemplo: digite 1 para editar o primeiro todo)')
-  const todoID = parseFloat(prompt());
+    console.log('Informe o ID do todo:');
+    console.log('(Exemplo: digite 1 para editar o primeiro todo)')
+    const todoID = parseFloat(prompt());
 
-  const index = todoID - 1;
+    const index = todoID - 1;
 
-  try {
-    if (todoID !== parseInt(todoID) || todoList.length <= index) {
-      throw Error ('ID inválido.');
-    } else {
-      todoList.splice(index, 1);
-      
-      console.log('Todo removido com sucesso'); 
+    try {
+      if (todoID !== parseInt(todoID) || todoList.length <= index) {
+        throw Error ('ID inválido.');
+      } else {
+        todoList.splice(index, 1);
+        
+        console.log('Todo removido com sucesso'); 
 
-      return
+        return
+      }
+    } catch (e) {
+      console.log(e.message);
+      removeTodo();
     }
-  } catch (e) {
-    console.log(e.message);
-    removeTodo();
-  }
-
-    
   }
 }
 
@@ -166,7 +163,6 @@ function getTodo() {
   if (todoList.length === 0) {
     throw Error ('Não há items na lista.');
   } else {
-  
     console.log('Informe o ID do todo:');
     console.log('(Exemplo: digite 1 para editar o primeiro todo)')
     const todoID = parseFloat(prompt());
@@ -185,8 +181,6 @@ function getTodo() {
       console.log(e.message);
       getTodo();
     }
-
-    
   }
 }
 
@@ -207,7 +201,6 @@ function redo() {
     console.log(e.message);
     redo();
   }
-  
 }
 
 action();
