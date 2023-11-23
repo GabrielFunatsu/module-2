@@ -54,7 +54,7 @@ function action() {
         break;
     
       default:
-        console.log('Opção inválida.');
+        console.log('Input inválido.');
         action();
         break;
     }
@@ -73,13 +73,9 @@ function message() {
 
   console.log('Selecione uma das opções acima (digite o número):');
 
-  const actionInput = parseFloat(prompt());
+  const messageInput = parseFloat(prompt());
 
-  if (!actionInput === parseInt(actionInput)) {
-    throw Error ('Input inválido!');
-  }
-
-  return actionInput;
+  return messageInput;
 }
 
 function addTodo() {
