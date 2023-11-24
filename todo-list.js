@@ -105,6 +105,8 @@ function editTodo() {
   } else {
     console.log('Informe o ID do todo:');
     console.log('(Exemplo: digite 1 para editar o primeiro todo)');
+    listTodo(); // Listar antes de solicitar o ID
+
     const todoID = Number(prompt());
   
     const index = todoID - 1;
