@@ -1,8 +1,10 @@
 function action() {
 
+  const userChoice = parseInt(document.getElementById('userChoice').value);
+
   const actionInput = message();
   
-    switch (actionInput) {
+    switch (userChoice) {
       case 1:
         addTodo();
         redo();
@@ -53,6 +55,11 @@ function action() {
 }
 
 function message() {
+  const outputDiv = document.getElementById('output');
+
+  const userChoiceContainer = document.getElementById('userChoiceContainer');
+  const menuButtonn = document.getElementById('MenuButton');
+
   console.log(`
   1 - Adicionar um tarefa.
   2 - Editar uma tarefa salva.
@@ -60,23 +67,63 @@ function message() {
   4 - Listar todas as tarefas salvas.
   5 - Obter uma tarefa salva.
   `);
+  
+  outputDiv.innerHTML  = (`
+    Menu de opções: <br>
+    1 - Adicionar um tarefa.<br>
+    2 - Editar uma tarefa salva.<br>
+    3 - Remover uma tarefa salva.<br>
+    4 - Listar todas as tarefas salvas.<br>
+    5 - Obter uma tarefa salva.
+  `);
+
 
   console.log('Selecione uma das opções acima (digite o número):');
 
-  const messageInput = Number(prompt());
+  userChoiceContainer.style.display = 'block';
+  menuButtonn.style.display = 'none';
 
-  return messageInput;
+  // const messageInput = Number(prompt());
+
+  return parseInt(document.getElementById('userChoice').value);;
 }
 
 function addTodo() {
   const add = {};
-  
+  const outputDiv = document.getElementById('output');
+  const userChoiceContainer = document.getElementById('userChoiceContainer');
+
+  outputDiv.innerHTML = `
+    <form id="addTodoForm">
+      <label for="todoTitle">Informe o título da tarefa: </label>
+      <input type="text" id="todoTitle" required><br>
+      <label for="todoHour">Informe o horário da tarefa: </label>
+      <input type="text" id="todoHour" required><br>
+      <button type="button" onclick="submitAddTodoForm()">Adicionar</button>
+    </form>
+  `;
+
+  userChoiceContainer.style.display = 'none';
+
   add.todo = prompt('Informe o seu todo: ');
   add.hour = prompt('Informe o horário do todo: ');
   
   console.log('Todo adicionado com sucesso');
 
+  outputDiv.innerHTML = ('Informe o seu todo: ');
+
   return todoList.push(add);
+}
+
+function submitAddTodoForm() {
+  const todoTitle = document.getElementById('todoTitle').value;
+  const todoHour = document.getElementById('todoHour').value;
+
+  const add = { todo: todoTitle, hour: todoHour };
+  todoList.push(add);
+
+  console.log('Todo adicionado com sucesso');
+  action();
 }
 
 function editTodo() {
@@ -138,10 +185,14 @@ function removeTodo() {
 }
 
 function listTodo() {
+  const outputDiv = document.getElementById('output');
+
   if (todoList.length === 0) {
     console.log('Não há itens na lista.');
+    outputDiv.textContent = 'Não há itens na lista.';
   } else {
     console.log(todoList);
+    outputDiv.textContent = JSON.stringify(todoList, null, 2);
   }
   return
 }
