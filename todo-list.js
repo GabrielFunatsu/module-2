@@ -115,7 +115,7 @@ function editTodo() {
       if (!todoID || todoID !== parseInt(todoID) || todoList.length <= index) {
         throw Error ('ID inválido.');
       } else {
-        let editTodo = prompt('Edite o seu todo: ');
+        let editTodo;
         do {
           editTodo = prompt('Edite o seu todo: ');
           if (editTodo === null) {
