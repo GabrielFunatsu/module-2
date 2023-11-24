@@ -70,10 +70,10 @@ function message() {
 
 function addTodo() {
   const add = {};
-
+  
   add.todo = prompt('Informe o seu todo: ');
   add.hour = prompt('Informe o horário do todo: ');
-
+  
   console.log('Todo adicionado com sucesso');
 
   return todoList.push(add);
@@ -198,8 +198,16 @@ const prompt = require('prompt-sync')();
 
 const todoList = [
   {
-    todo: 'youtube',
-    hour: '21:00'
+    todo: 'aula',
+    hour: '19:00'
+  },
+  {
+    todo: 'banho',
+    hour: '22:00'
+  },
+  {
+    todo: 'janta',
+    hour: '22:30'
   }
 ];
 
