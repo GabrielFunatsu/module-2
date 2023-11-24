@@ -70,10 +70,30 @@ function message() {
 
 function addTodo() {
   const add = {};
+
+  do {
+    add.todo = prompt('Informe o seu todo: ');
+
+    if (!add.todo.trim()) {
+      console.log('Por favor, insira um todo válido.');
+    }
+
+  } while (!add.todo.trim());
+
+  do {
+    add.hour = prompt('Informe o horário do todo (no formato HH:MM): ');
+
+    if (!add.hour.trim()) {
+      console.log('Por favor, insira um horário válido.');      
+    }
+
+    if (!/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(add.hour.trim())) {
+      console.log('Por favor, insira um horário válido no formato HH:MM.');      
+    }
+
+  } while (!add.hour.trim() || !/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(add.hour.trim()));
   
-  add.todo = prompt('Informe o seu todo: ');
-  add.hour = prompt('Informe o horário do todo: ');
-  
+
   console.log('Todo adicionado com sucesso');
 
   return todoList.push(add);
