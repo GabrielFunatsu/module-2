@@ -115,10 +115,15 @@ function editTodo() {
       } else {
         let editTodo = prompt('Edite o seu todo: ');
         do {
-          if (!editTodo.trim()) {
+          editTodo = prompt('Edite o seu todo: ');
+          if (editTodo === null) {
+            console.log('Edição cancelada.');
+            return; 
+          }
+          if (editTodo.trim() === '') {
             console.log('Por favor, insira um todo válido.');
           }
-        } while (!editTodo.trim());
+        } while (editTodo.trim() === '');
 
         let editHour;
         do {
